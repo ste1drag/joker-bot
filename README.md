@@ -1,0 +1,1 @@
+Diskord bot for fun. Still early production. When done, documentation will be available.
