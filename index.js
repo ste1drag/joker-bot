@@ -1,8 +1,9 @@
 const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
-const { token } = require('./config.json');
+const { Client, Collection, Intents, } = require('discord.js');
+const { token, guildId } = require('./config.json');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 client.commands = new Collection();
 
@@ -37,6 +38,24 @@ client.on('interactionCreate', async interaction => {
     } catch (error) {
         console.error(error);
         await interaction.reply({ content: 'There was an error while executing this command', ephemeral: true });
+    }
+
+});
+
+const prefix = "j!";
+client.on('messageCreate', message => {
+    if (!message.content.startsWith(prefix)) {
+        return;
+    }
+    if (message.content === 'j!krile') {
+        message.channel.send({ files: ['./krile.jpeg'] });
+    }
+
+    if (message.content === 'j!boza') {
+        message.channel.send({ files: ['./boza.jpeg'] });
+    }
+    if (message.content === 'j!gavra') {
+        message.channel.send({ files: ['./gavra.jpeg'] });
     }
 
 });
