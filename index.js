@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents, } = require('discord.js');
 const { token, guildId } = require('./config.json');
+const help = require('./embeds/helpEmbed.js');
 
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -56,6 +57,9 @@ client.on('messageCreate', message => {
     }
     if (message.content === 'j!gavra') {
         message.channel.send({ files: ['./gavra.jpeg'] });
+    }
+    if (message.content === 'j!help') {
+        message.channel.send({ embeds: [help] })
     }
 
 });
